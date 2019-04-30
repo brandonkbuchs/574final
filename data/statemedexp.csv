@@ -1,0 +1,52 @@
+﻿Location,Primary_State_Abbreviation,Current_Status_of_Medicaid_Expansion_Decision,Date_Implemented,Date_of_other_expansion_1,Implemented
+Alaska,AK,Adopted,9/1/2015,,TRUE
+Arizona,AZ,Adopted,1/18/2019,,TRUE
+Arkansas,AR,Adopted,1/1/2014,3/5/2018,TRUE
+California,CA,Adopted,1/1/2014,,TRUE
+Colorado,CO,Adopted,1/1/2014,,TRUE
+Connecticut,CT,Adopted,1/1/2014,,TRUE
+Delaware,DE,Adopted,1/1/2014,,TRUE
+District of Columbia,DC,Adopted,1/1/2014,,TRUE
+Hawaii,HI,Adopted,1/1/2014,,TRUE
+Illinois,IL,Adopted,1/1/2014,,TRUE
+Indiana,IN,Adopted,2/1/2015,2/2/2018,TRUE
+Iowa,IA,Adopted,1/1/2014,1/12/2015,TRUE
+Kentucky,KY,Adopted,1/1/2014,,TRUE
+Louisiana,LA,Adopted,7/1/2016,,TRUE
+Maine,ME,Adopted,7/2/2019,,TRUE
+Maryland,MD,Adopted,1/1/2014,,TRUE
+Massachusetts,MA,Adopted,1/1/2014,,TRUE
+Michigan,MI,Adopted,4/1/2014,,TRUE
+Minnesota,MN,Adopted,1/1/2014,,TRUE
+Montana,MT,Adopted,1/1/2016,,TRUE
+Nevada,NV,Adopted,1/1/2014,,TRUE
+New Hampshire,NH,Adopted,8/15/2014,,TRUE
+New Jersey,NJ,Adopted,1/1/2014,,TRUE
+New Mexico,NM,Adopted,1/1/2014,,TRUE
+New York,NY,Adopted,1/1/2014,,TRUE
+North Dakota,ND,Adopted,1/1/2014,,TRUE
+Ohio,OH,Adopted,1/1/2014,,TRUE
+Oregon,OR,Adopted,1/1/2014,,TRUE
+Pennsylvania,PA,Adopted,1/1/2015,,TRUE
+Rhode Island,RI,Adopted,1/1/2014,,TRUE
+Vermont,VT,Adopted,1/1/2014,,TRUE
+Virginia,VA,Adopted,11/1/2018,,TRUE
+Washington,WA,Adopted,1/1/2014,,TRUE
+West Virginia,WV,Adopted,1/1/2014,,TRUE
+Idaho,ID,Adopted-Not Implemented,,,FALSE
+Nebraska,NE,Adopted-Not Implemented,,,FALSE
+Utah,UT,Adopted-Not Implemented,,,FALSE
+Alabama,AL,Not Adopted,,,FALSE
+Florida,FL,Not Adopted,,,FALSE
+Georgia,GA,Not Adopted,,,FALSE
+Kansas,KS,Not Adopted,,,FALSE
+Mississippi,MS,Not Adopted,,,FALSE
+Missouri,MO,Not Adopted,,,FALSE
+North Carolina,NC,Not Adopted,,,FALSE
+Oklahoma,OK,Not Adopted,,,FALSE
+South Carolina,SC,Not Adopted,,,FALSE
+South Dakota,SD,Not Adopted,,,FALSE
+Tennessee,TN,Not Adopted,,,FALSE
+Texas,TX,Not Adopted,,,FALSE
+Wisconsin,WI,Not Adopted,,,FALSE
+Wyoming,WY,Not Adopted,,,FALSE

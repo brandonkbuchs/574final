@@ -1,0 +1,195 @@
+#Enable postgis and topology EXTENSION
+
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+
+#Create hspa table
+
+CREATE TABLE public.hspa
+(
+  hpsa_discipline_class character varying(24),
+  hpsa_score integer,
+  primary_state_abbreviation character varying(6),
+  hpsa_designation_date timestamp without time zone NOT NULL,
+  withdrawn_date timestamp without time zone,
+  county_name character varying(54),
+  pct_of_pop_below_poverty double precision,
+  the_geom geometry,
+  designation_type character varying(200),
+  longitude double precision,
+  latitude double precision,
+  hpsa_population_type character varying(100),
+  hpsa_id character varying(40),
+  hpsa_name character varying(200),
+  hpsa_status character varying(100),
+  CONSTRAINT enforce_dims_the_geom CHECK (st_ndims(the_geom) = 2),
+  CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),
+  CONSTRAINT enforce_srid_the_geom CHECK (st_srid(the_geom) = 4326)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.hspa
+  OWNER TO postgres;
+
+-- Index: public.hpsa_the_geom_gist
+
+-- DROP INDEX public.hpsa_the_geom_gist;
+
+CREATE INDEX hpsa_the_geom_gist
+  ON public.hspa
+  USING gist
+  (the_geom);
+
+ #Copy table to database
+ \copy hspa(HPSA_Name,HPSA_ID,Designation_Type,HPSA_Discipline_Class,HPSA_Score,Primary_State_Abbreviation,HPSA_Status,HPSA_Designation_Date,Withdrawn_Date,County_Name,HPSA_Population_Type,pct_of_pop_below_poverty,Longitude,Latitude) FROM 'HSPA.csv' DELIMITERS ',' CSV HEADER; 
+
+ #Create geopop table
+
+ CREATE TABLE public.geopop
+ (
+   HPSA_Name varchar(200),
+   HPSA_ID varchar(30),
+   Designation_Type varchar(60),
+   HPSA_Discipline_Class varchar(30),
+   HPSA_Score integer,
+   Primary_State_Abbreviation char(2),
+   HPSA_Status varchar(30),
+   HPSA_Designation_Date timestamp without time zone NOT NULL,
+   Withdrawn_date timestamp without time zone,
+   County_name varchar(35),
+   HPSA_Population_Type varchar(50),
+   pct_of_pop_below_poverty double precision,
+   Longitude double precision,
+   Latitude double precision,
+   the_geom geometry,
+   CONSTRAINT enforce_dims_the_geom CHECK (st_ndims(the_geom) = 2),
+   CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),
+   CONSTRAINT enforce_srid_the_geom CHECK(st_srid(the_geom) = 4326),
+   PRIMARY KEY(HPSA_ID)
+ )
+ WITH (
+   OIDS = FALSE
+ );
+ ALTER TABLE public.geopop OWNER TO postgres;
+
+ CREATE INDEX geopop_the_geom_gist ON public.geopop USING gist (the_geom);
+
+#Create dental database
+
+CREATE TABLE dental
+(
+     HPSA_Name varchar(200),
+   HPSA_ID varchar(30),
+   Designation_Type varchar(60),
+   HPSA_Discipline_Class varchar(30),
+   HPSA_Score integer,
+   Primary_State_Abbreviation char(2),
+   HPSA_Status varchar(30),
+   HPSA_Designation_Date timestamp without time zone NOT NULL,
+   Withdrawn_date timestamp without time zone,
+   County_name varchar(35),
+   HPSA_Population_Type varchar(50),
+   pct_of_pop_below_poverty double precision,
+   Longitude double precision,
+   Latitude double precision,
+   the_geom geometry,
+   CONSTRAINT enforce_dims_the_geom CHECK (st_ndims(the_geom) = 2),
+   CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),
+   CONSTRAINT enforce_srid_the_geom CHECK(st_srid(the_geom) = 4326),
+   PRIMARY KEY(HPSA_ID)
+)
+WITH (
+  OIDS = FALSE
+);
+ALTER TABLE public.dental OWNER TO postgres;
+
+CREATE INDEX dental_the_geom_gist ON public.dental USING gist(the_geom);
+
+\copy dental(HPSA_Name,HPSA_ID,Designation_Type,HPSA_Discipline_Class,HPSA_Score,Primary_State_Abbreviation,HPSA_Status,HPSA_Designation_Date,Withdrawn_Date,County_Name,HPSA_Population_Type,pct_of_pop_below_poverty,Longitude,Latitude) FROM 'dental.csv' DELIMITERS ',' CSV HEADER;
+
+# create mental table
+
+CREATE TABLE mental
+(
+     HPSA_Name varchar(200),
+   HPSA_ID varchar(30),
+   Designation_Type varchar(60),
+   HPSA_Discipline_Class varchar(30),
+   HPSA_Score integer,
+   Primary_State_Abbreviation char(2),
+   HPSA_Status varchar(30),
+   HPSA_Designation_Date timestamp without time zone NOT NULL,
+   Withdrawn_date timestamp without time zone,
+   County_name varchar(35),
+   HPSA_Population_Type varchar(50),
+   pct_of_pop_below_poverty double precision,
+   Longitude double precision,
+   Latitude double precision,
+   the_geom geometry,
+   CONSTRAINT enforce_dims_the_geom CHECK (st_ndims(the_geom) = 2),
+   CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),
+   CONSTRAINT enforce_srid_the_geom CHECK(st_srid(the_geom) = 4326),
+   PRIMARY KEY(HPSA_ID)
+)
+WITH (
+  OIDS = FALSE
+);
+ALTER TABLE public.mental OWNER TO postgres;
+
+CREATE INDEX mental_the_geom_gist ON public.mental USING gist(the_geom);
+
+\copy mental(HPSA_Name,HPSA_ID,Designation_Type,HPSA_Discipline_Class,HPSA_Score,Primary_State_Abbreviation,HPSA_Status,HPSA_Designation_Date,Withdrawn_Date,County_Name,HPSA_Population_Type,pct_of_pop_below_poverty,Longitude,Latitude) FROM 'mental.csv' DELIMITERS ',' CSV HEADER;
+
+# create primarycare
+
+CREATE TABLE primarycare
+(
+     HPSA_Name varchar(200),
+   HPSA_ID varchar(30),
+   Designation_Type varchar(60),
+   HPSA_Discipline_Class varchar(30),
+   HPSA_Score integer,
+   Primary_State_Abbreviation char(2),
+   HPSA_Status varchar(30),
+   HPSA_Designation_Date timestamp without time zone NOT NULL,
+   Withdrawn_date timestamp without time zone,
+   County_name varchar(35),
+   HPSA_Population_Type varchar(50),
+   pct_of_pop_below_poverty double precision,
+   Longitude double precision,
+   Latitude double precision,
+   the_geom geometry,
+   CONSTRAINT enforce_dims_the_geom CHECK (st_ndims(the_geom) = 2),
+   CONSTRAINT enforce_geotype_geom CHECK (geometrytype(the_geom) = 'POINT'::text OR the_geom IS NULL),
+   CONSTRAINT enforce_srid_the_geom CHECK(st_srid(the_geom) = 4326),
+   PRIMARY KEY(HPSA_ID)
+)
+WITH (
+  OIDS = FALSE
+);
+ALTER TABLE public.primarycare OWNER TO postgres;
+
+CREATE INDEX mental_the_geom_gist ON public.primarycare USING gist(the_geom);
+
+\copy primarycare(HPSA_Name,HPSA_ID,Designation_Type,HPSA_Discipline_Class,HPSA_Score,Primary_State_Abbreviation,HPSA_Status,HPSA_Designation_Date,Withdrawn_Date,County_Name,HPSA_Population_Type,pct_of_pop_below_poverty,Longitude,Latitude) FROM 'primarycare.csv' DELIMITERS ',' CSV HEADER;
+
+#Create medexpansion table
+
+CREATE TABLE statemedexp 
+(
+  Location varchar(30),
+  Primary_State_Abbreviation char(2),
+  Current_Status_of_Medicaid_Expansion_Decision varchar(50),
+  Date_Implemented timestamp without time zone,
+  Date_of_other_expansion_1 timestamp without time zone,
+  Implemented boolean,
+  PRIMARY KEY(Primary_State_Abbreviation)
+)
+WITH (
+  OIDS = FALSE
+);
+
+ALTER TABLE public.statemedexp OWNER TO postgres;
+
+\copy statemedexp(Location,Primary_State_Abbreviation,Current_Status_of_Medicaid_Expansion_Decision,Date_Implemented,Date_of_other_expansion_1,Implemented) FROM 'statemedexp.csv' DELIMITERS ',' CSV HEADER;
