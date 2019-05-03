@@ -1,0 +1,52 @@
+state,hpsa_avg,medicaid_decison
+NM,  14,Adopted
+MT,  13,Adopted
+MO,  13,Not Adopted
+AK,  13,Adopted
+AZ,  13,Adopted
+MS,  13,Not Adopted
+WA,  12,Adopted
+NV,  12,Adopted
+DC,  12,Adopted
+OR,  12,Adopted
+ID,  12,Adopted-Not Implemented
+OK,  12,Not Adopted
+GA,  11,Not Adopted
+HI,  11,Adopted
+AL,  11,Not Adopted
+LA,  11,Adopted
+CT,  11,Adopted
+TN,  11,Not Adopted
+SD,  11,Not Adopted
+OH,  11,Adopted
+FL,  11,Not Adopted
+NC,  11,Not Adopted
+UT,  11,Adopted-Not Implemented
+MI,  11,Adopted
+IN,  10,Adopted
+CO,  10,Adopted
+WV,  10,Adopted
+AR,  10,Adopted
+SC,  10,Not Adopted
+MD,  10,Adopted
+WI,  10,Not Adopted
+KS,  10,Not Adopted
+MN,  10,Adopted
+CA,  10,Adopted
+ND,  10,Adopted
+TX,  10,Not Adopted
+ME,   9,Adopted
+DE,   9,Adopted
+KY,   9,Adopted
+VA,   9,Adopted
+NY,   9,Adopted
+WY,   9,Not Adopted
+IL,   9,Adopted
+IA,   8,Adopted
+MA,   8,Adopted
+PA,   7,Adopted
+NE,   7,Adopted-Not Implemented
+NH,   7,Adopted
+RI,   6,Adopted
+NJ,   6,Adopted
+VT,   4,Adopted
