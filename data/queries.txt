@@ -1,0 +1,29 @@
+queries
+
+----copies over into CSV the state by state averages of HPSA socres----
+
+COPY (SELECT primarycare.primary_state_abbreviation AS State, to_char(AVG(HPSA_Score),'999') AS HPSA_Avg, current_status_of_medicaid_expansion_decision AS Medicaid_Decison FROM primarycare LEFT OUTER JOIN statemedexp ON (primarycare.primary_state_abbreviation = statemedexp.primary_state_abbreviation) GROUP BY primarycare.primary_state_abbreviation, current_status_of_medicaid_expansion_decision ORDER BY HPSA_Avg DESC) TO 'D:\UW_Madison\GEOG574\Final Project\primarycare_analysis.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT mental.primary_state_abbreviation AS State, to_char(AVG(HPSA_Score),'999') AS HPSA_Avg, current_status_of_medicaid_expansion_decision AS Medicaid_Decison FROM mental LEFT OUTER JOIN statemedexp ON (mental.primary_state_abbreviation = statemedexp.primary_state_abbreviation) GROUP BY mental.primary_state_abbreviation, current_status_of_medicaid_expansion_decision ORDER BY HPSA_Avg DESC) TO 'D:\UW_Madison\GEOG574\Final Project\mental_analysis.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT dental.primary_state_abbreviation AS State, to_char(AVG(HPSA_Score),'999') AS HPSA_Avg, current_status_of_medicaid_expansion_decision AS Medicaid_Decison FROM dental LEFT OUTER JOIN statemedexp ON (dental.primary_state_abbreviation = statemedexp.primary_state_abbreviation) GROUP BY dental.primary_state_abbreviation, current_status_of_medicaid_expansion_decision ORDER BY HPSA_Avg DESC) TO 'D:\UW_Madison\GEOG574\Final Project\dental_analysis.csv' DELIMITER ',' CSV HEADER;
+
+COPY (SELECT geopop.primary_state_abbreviation AS State, to_char(AVG(HPSA_Score),'999') AS HPSA_Avg, current_status_of_medicaid_expansion_decision AS Medicaid_Decison FROM geopop LEFT OUTER JOIN statemedexp ON (geopop.primary_state_abbreviation = statemedexp.primary_state_abbreviation) GROUP BY geopop.primary_state_abbreviation, current_status_of_medicaid_expansion_decision ORDER BY HPSA_Avg DESC) TO 'D:\UW_Madison\GEOG574\Final Project\geopop_analysis.csv' DELIMITER ',' CSV HEADER;
+
+
+---returns counts for every HPSA in the hspa table based on category in statemedexp (adopted, adopted-not implemented, not implemented) and the number of HPSA's withdrawn after 2014-01-01 for analysis
+
+
+SELECT COUNT(HPSA_ID) as Total_HPSA_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Adopted';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND withdrawn_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND withdrawn_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND withdrawn_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted';
+
+
