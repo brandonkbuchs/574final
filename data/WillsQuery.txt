@@ -1,0 +1,120 @@
+-----------------Counts----------------------------------
+----Adopted
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted 
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND withdrawn_date > '2014-01-01';
+
+
+SELECT COUNT(HPSA_ID) AS PSA_Withdrawn_Adopted
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_designation_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS PSA_Withdrawn_Adopted
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted';
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_Adopted_Withdrawn
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_status= 'Withdrawn';
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_Adopted_Designated
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_status= 'Designated';
+
+---Adopted Not Implemented
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Adopted_NotImplemented 
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND withdrawn_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS PSA_Withdrawn_Adopted_NotImplemented
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_designation_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS PSA_Withdrawn_Adopted_NotImplemented
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented';
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_AdoptedNotImp_Withdrawn
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_status= 'Withdrawn';
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_Adopted_Designated
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_status= 'Designated';
+
+
+---Not Adopted
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Not_Adopted
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND withdrawn_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Not_Adopted
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_designation_date > '2014-01-01';
+
+SELECT COUNT(HPSA_ID) AS HPSA_Withdrawn_Not_Adopted
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted';
+
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_NotAdopted_Withdrawn
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_status= 'Withdrawn';
+
+SELECT 
+COUNT(hpsa_id) AS HPSA_Count_NotAdopted_Designated
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_status= 'Designated';
+
+-----------------Averages----------------------------------
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_adopted_beforeExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_designation_date < '2014-01-01' AND hpsa_status= 'Designated';
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_adopted_afterExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation)
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_designation_date > '2014-01-01' AND hpsa_status= 'Designated';
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_adoptedtotal
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted' AND hpsa_status= 'Designated';
+
+-----not adopted
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_Notadopted_beforeExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_designation_date < '2014-01-01' AND hpsa_status= 'Designated'
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_Notadopted_AfterExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_designation_date > '2014-01-01' AND hpsa_status= 'Designated'
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_notadopted_total
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Not Adopted' AND hpsa_status= 'Designated';
+
+---Adopted Not Implemented
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_AdoptedNotImp_AfterExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_designation_date > '2014-01-01' AND hpsa_status= 'Designated';
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_AdoptedNotImp_beforeExpansion
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_designation_date < '2014-01-01' AND hpsa_status= 'Designated';
+
+SELECT 
+Avg(hpsa_score) AS HPSA_SCORE_AdoptedNotImp_total
+FROM hspa LEFT OUTER JOIN statemedexp ON (hspa.primary_state_abbreviation = statemedexp.primary_state_abbreviation) 
+WHERE current_status_of_medicaid_expansion_decision = 'Adopted-Not Implemented' AND hpsa_status= 'Designated';
